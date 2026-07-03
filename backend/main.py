@@ -2,8 +2,8 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from contextlib import asynccontextmanager
 from utils.database import init_db, close_db
-from routes.scanner import scan_router
-from routes.auth import auth_router
+from routes.scanner_router import scan_router
+from routes.auth_router import auth_router
 from utils.init_admin import init_admin_user
 
 @asynccontextmanager
@@ -30,8 +30,8 @@ app.add_middleware(
 )
 
 # Регистрируем роутер
-app.include_router(scan_router)
-app.include_router(auth_router)
+app.include_router(scan_router, prefix="/api")
+app.include_router(auth_router, prefix="/api")
 
 
 

@@ -1,5 +1,5 @@
 from fastapi import APIRouter
-from controllers.scanner import handle_single_scan, handle_range_scan
+from controllers.scanner_controller import handle_single_scan, handle_range_scan
 
 scan_router = APIRouter(
     prefix="/scan",

@@ -32,3 +32,13 @@ async def handle_login(credentials: LoginRequest, response: Response):
       "email": user["email"],
       "name": user["name"]
    }
+   
+async def handle_logout(response: Response):
+   """Удаляет HttpOnly куку авторизации из браузера"""
+   response.delete_cookie(
+      key="access_token",
+      httponly=True,
+      samesite="lax",
+      secure=False # Должно совпадать с настройками при set_cookie
+   )
+   return {"detail": "Успешный выход из системы"}

@@ -22,7 +22,7 @@ export const authApi = baseApi.injectEndpoints({
       }),
       // Новый запрос на проверку профиля
       getMe: builder.query<UserResponse, void>({
-         query: () => '/auth/me',
+         query: () => '/auth/get-me',
          providesTags: ['User'],
       }),
    }),
