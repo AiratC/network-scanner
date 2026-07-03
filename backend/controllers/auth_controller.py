@@ -19,13 +19,14 @@ async def handle_login(credentials: LoginRequest, response: Response):
    
    # 4. Сажаем JWT в безопасную HttpOnly куку
    response.set_cookie(
-      key="access_token",
-      value=token,
-      httponly=True,     # Защита от XSS (JS на фронтенде не сможет её украсть)
-      max_age=604800, # У тебя токен живет 7 дней, давай и куку сделаем на 7 дней (3600 * 24 * 7)
-      samesite="lax",    # Защита от CSRF
-      secure=False,      # Для разработки на localhost оставляем False
-   )
+    key="access_token",
+    value=token,
+    httponly=True,     # Защита от XSS (JS не сможет украсть токен)
+    max_age=604800,    # 7 дней в секундах
+    samesite="lax",    # Позволяет браузеру передавать куку при cross-origin запросах на localhost
+    secure=False,      # ОБЯЗАТЕЛЬНО False. Если поставить True, кука работает ТОЛЬКО по HTTPS. На localhost у нас HTTP, поэтому True её полностью блокирует!
+    path="/",          # ОБЯЗАТЕЛЬНО. Говорит браузеру: кука доступна для ВСЕХ эндпоинтов бэкенда, начиная с корня
+)
    
    # 5. Возвращаем JSON с данными пользователя для Redux-стейта
    return {

@@ -16,12 +16,12 @@ const authSlice = createSlice({
          state.isAuthenticated = true;
       },
       // При выходе сбрасываем стейт (бэкенд при этом должен будет стереть куку)
-      logout: (state) => {
+      logoutAction: (state) => {
          state.user = null;
          state.isAuthenticated = false;
       }
    }
 });
 
-export const { setCredentials, logout } = authSlice.actions;
+export const { setCredentials, logoutAction } = authSlice.actions;
 export default authSlice.reducer;

@@ -10,12 +10,10 @@ auth_router = APIRouter(
 
 @auth_router.post("/login", response_model=UserResponse)
 async def login(credentials: LoginRequest, response: Response):
-   print(credentials)
    return await handle_login(credentials, response)
 
 @auth_router.get("/get-me", response_model=UserResponse)
-async def get_me(current_user = Depends(get_current_user)):
-   print('get-me router')
+async def get_me(current_user: dict = Depends(get_current_user)):
    """
    Эндпоинт возвращает данные текущего вошедшего пользователя.
    Сюда невозможно попасть, если кука пустая или токен «протух» —

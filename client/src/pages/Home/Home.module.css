@@ -1,0 +1,98 @@
+.container {
+   min-height: 100vh;
+   background-color: #0d1117;
+   color: #f0f6fc;
+   font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+   padding: 40px 20px;
+   box-sizing: border-box;
+}
+
+/* Шапка панели управления */
+.header {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   max-width: 1200px;
+   margin: 0 auto 40px auto;
+   border-bottom: 1px solid #30363d;
+   padding-bottom: 20px;
+   gap: 20px;
+}
+
+.welcomeSection h1 {
+   margin: 0 0 4px 0;
+   font-size: 28px;
+   font-weight: 600;
+}
+
+.welcomeSection p {
+   margin: 0;
+   color: #8b949e;
+   font-size: 14px;
+}
+
+/* Кнопка Выйти */
+.logoutButton {
+   padding: 10px 20px;
+   background-color: #21262d;
+   border: 1px solid #30363d;
+   border-radius: 6px;
+   color: #ff7b72;
+   font-weight: 500;
+   cursor: pointer;
+   transition: all 0.2s ease;
+}
+
+.logoutButton:hover:not(:disabled) {
+   background-color: rgba(248, 81, 73, 0.1);
+   border-color: #f85149;
+}
+
+/* Сетка карточек статистики (Адаптивная: Grid) */
+.dashboardGrid {
+   display: grid;
+   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+   gap: 20px;
+   max-width: 1200px;
+   margin: 0 auto;
+}
+
+.card {
+   background-color: #161b22;
+   border: 1px solid #30363d;
+   border-radius: 8px;
+   padding: 24px;
+   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.card h3 {
+   margin: 0 0 12px 0;
+   color: #8b949e;
+   font-size: 14px;
+   text-transform: uppercase;
+   letter-spacing: 0.5px;
+}
+
+.cardValue {
+   font-size: 32px;
+   font-weight: bold;
+   color: #58a6ff;
+   margin: 0;
+}
+
+/* Адаптивность для мобильных устройств */
+@media (max-width: 600px) {
+   .header {
+      flex-direction: column;
+      align-items: flex-start;
+   }
+
+   .logoutButton {
+      width: 100%;
+      text-align: center;
+   }
+
+   .welcomeSection h1 {
+      font-size: 24px;
+   }
+}

@@ -21,12 +21,17 @@ async def lifespan(app: FastAPI):
 app = FastAPI(lifespan=lifespan)
 
 # Настройка CORS (что бы фронтенд мог достучаться)
+origins = [
+    "http://localhost:5173",
+    "http://127.0.0.1:5173", # Добавили этот адрес
+]
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173"],
+    allow_origins=origins, # Передаем массив вместо одной строки
     allow_credentials=True, 
-    allow_methods=["*"], # Разрешаем все методы (GET, POST, PATCH, DELETE)
-    allow_headers=["*"], # Разрешаем любые заголовки (включая Authorization)
+    allow_methods=["*"], 
+    allow_headers=["*"], 
 )
 
 # Регистрируем роутер
